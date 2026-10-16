@@ -1,0 +1,30 @@
+{
+  "jurisdiction": "US-MT",
+  "slug": "montana",
+  "name": "Montana",
+  "short_name": "MT",
+  "agency": {
+    "name": null,
+    "short_name": null,
+    "url": null
+  },
+  "rate_tables": [],
+  "pays_actual_wage_below_min": null,
+  "waiting_period_days": null,
+  "retroactive_after_days": null,
+  "aww_lookback_weeks": null,
+  "reporting_deadline_days": null,
+  "settlement_module": null,
+  "settlement_rules": {
+    "effective_from": null,
+    "ppd_rate": null,
+    "weekly_max": null,
+    "weekly_min": null,
+    "body_part_weeks": null,
+    "range_low_factor": null,
+    "range_high_factor": null,
+    "source_url": null,
+    "reviewed_by": null
+  },
+  "last_reviewed": null
+}

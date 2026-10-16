@@ -1,18 +1,20 @@
 # WorkClaimGuide — Requirements
 
-Source: *WorkClaimGuide — Product Spec* (Oct 16, 2026, Talha Shahzad).
+Source: *WorkClaimGuide — Product Spec* (revised, Oct 16, 2026, Talha Shahzad).
 Priorities: **P1** = MVP (Phase 1), **P2** = Phase 2, **P3** = Phase 3.
 
 ---
 
 ## 1. Product summary
 
-WorkClaimGuide (workclaimguide.com) is a free website where injured workers in the US and UK estimate their benefits, understand their claim, and track it.
+WorkClaimGuide (workclaimguide.com) is a free website where injured workers in the US and UK estimate their benefits, understand their claim, and track it. It earns from ads on high-paying insurance and legal topics, plus a paid Pro tier.
 
-- **Problem:** after a work injury, people face confusing state rules, adjusters and forms. Search results are mostly law-firm sales pages that never give a real number.
+- **Problem:** after a work injury, people face confusing state rules, adjusters and forms. Free tools already exist (official state estimators in some states, private multi-state calculator sites, law-firm and legal-info articles), so the open question is where they still fall short. The Phase 0 validation (§3) answers that with evidence.
 - **Answer:** accurate, state-specific calculators with plain-English explanations, sources and "last updated" dates. Every result explains how it was calculated.
 - **Positioning:** neutral and trustworthy — "Know your numbers before you talk to anyone." Not a law firm, not tied to any insurer.
-- **Edge:** the founder's hands-on experience in claims processing, case management and medical transport. Win on accuracy and depth, not volume.
+- **Where we might win (to be validated):** not by having calculators, which others already offer, but by doing one narrow job noticeably better. Leading candidate: **medical mileage** — rates are scattered across state sites, and a clean trip log with a printable claim summary may be missing. The top-10 audit in §3 decides this.
+- **Founder credibility:** the founder designs software for transportation dispatch and case management in workers' compensation. The site must describe that experience **exactly as it is**, never as claims-adjuster or legal experience. A licensed professional reviewing the calculators would add credibility the site cannot get otherwise.
+- **Naming:** before registering, check "WorkClaimGuide" has no trademark conflicts in the US (USPTO) and UK (IPO); then register the .com and, for UK pages, the .co.uk.
 
 ### Users
 
@@ -29,20 +31,22 @@ Legal advice, filing claims on the user's behalf, a mobile app, live chat, count
 
 ## 2. Business model
 
-| Stream | What the user gets | Price | When |
-|---|---|---|---|
-| Display ads | Free calculators and guides | Free | Launch (AdSense), then Ezoic / Mediavine |
-| Pro Claim Report | PDF: benefit breakdown, timeline, adjuster questions | $9.99 / £7.99 one-time | Phase 2 |
-| Pro Tracker | Claim tracker, mileage log, reminders, unlimited reports, no ads | $4.99 / £3.99 per month | Phase 2 |
-| Partner referrals | Optional "talk to a specialist" link | Paid per referral | Phase 3, after legal review |
+Ads are the first income test; the Pro tier is built **only if a waitlist shows people will pay**. Prices are starting guesses, not validated.
 
-**Payments:** Stripe does not onboard Pakistani businesses. Use Paddle or Lemon Squeezy as merchant of record (handles US sales tax and UK VAT). Confirm Pakistan payout support before integrating.
+| Stream | What the user gets | Price (starting point) | When |
+|---|---|---|---|
+| Display ads | Free calculators and guides | Free | Phase 2 (AdSense), then Ezoic / Mediavine at higher traffic |
+| Pro Claim Report | PDF: benefit breakdown, timeline, adjuster questions | $9.99 / £7.99 one-time | Phase 3, after waitlist test |
+| Pro Tracker | Claim tracker, mileage log, reminders, unlimited reports, no ads | $4.99 / £3.99 per month | Phase 3, after waitlist test |
+| Partner referrals | Optional "talk to a specialist" link | Paid per referral by partner | Phase 3, after legal review |
+
+**Payments:** Stripe does not onboard Pakistani businesses directly. Use Paddle or Lemon Squeezy as merchant of record (handles US sales tax and UK VAT, pays out internationally). Confirm current Pakistan payout support before integrating.
 
 ### Ad rules
 
 - AD-1: Never place ads inside a calculator's input area or between the inputs and the result.
 - AD-2: Max **3** ad slots on a calculator page, **4** on a long guide.
-- AD-3: No ads on Pro pages, the account area (`/app/`), or methodology pages. No ads above the fold on Home.
+- AD-3: No ads on Pro pages, the account area (`/app/`), or the methodology page. No ads above the fold on Home.
 - AD-4: Never above the calculator on mobile; the first screen must show the calculator title and first input.
 - AD-5: Consent banner (GDPR for UK, CCPA for California) must be accepted before personalized ads load.
 - AD-6: Do not build referrals until a lawyer has reviewed the setup (PI lead selling is regulated in the UK and several US states).
@@ -51,21 +55,30 @@ Legal advice, filing claims on the user's behalf, a mobile app, live chat, count
 
 ## 3. Scope by phase
 
-| Area | Phase 1 (MVP) | Phase 2 | Phase 3 |
+Validate first, then build one narrow tool, and expand only where real traffic and interest appear. Each phase has a gate it must pass.
+
+### Phase 0: Validation (week 1)
+
+- [ ] Pull keyword ranges and trends for California, Texas and Florida workers' comp terms (Google Keyword Planner, plus a free keyword tool).
+- [ ] Audit the top 10 results for 15–20 target searches: who ranks (state sites, calculator sites, law firms), what each tool offers, whether it cites official sources, what is missing.
+- [ ] Pick **one** narrow gap from the audit (mileage log is the leading candidate, not yet confirmed).
+- [ ] Show a rough prototype to 3–5 people who know the problem (injured workers, claims staff, case managers) and note what they use today.
+
+**Gate:** a gap that the audit and the conversations both confirm. If none appears, stop and compare against other ideas before building.
+
+| Area | Phase 1: Narrow test (weeks 2–4) | Phase 2: Expand (months 2–4) | Phase 3: Pro + UK (month 5 onward) |
 |---|---|---|---|
-| US states | California, Texas, Florida | New York, Pennsylvania, Illinois, Ohio, Georgia, North Carolina, Michigan | Remaining states by traffic |
-| US calculators | Average weekly wage, weekly benefit (TTD), mileage reimbursement | Settlement estimator, back pay / waiting period | Death benefits, return-to-work wage loss |
-| UK tools | Injury compensation estimator | Statutory Sick Pay, Industrial Injuries Disablement Benefit | Employer's liability claim timeline |
-| Content | 10 guides, glossary, methodology | 30+ guides, per-state FAQs | 4 guides a month |
-| Accounts | None | Sign-up, saved calculations | Teams for HR users |
-| Monetization | AdSense | Pro report + tracker | Partner referrals, Mediavine |
+| US states | The 3 states with the clearest gap | More states, ranked by traffic data | Remaining states |
+| Calculators | The one chosen tool | Weekly benefit, average weekly wage, back pay | Settlement range, only with expert review |
+| UK tools | None | None | SSP and injury benefit first; compensation estimator only after the guideline-figure question is settled |
+| Content | 3–5 strong guides, methodology, about page | 20+ guides | Ongoing |
+| Backend | None (static site) | Email sign-up only | Accounts, Pro, admin |
+| Monetization | None yet; "Get the full report — coming soon" waitlist button | AdSense, keep the waitlist | Pro report and tracker, if the waitlist shows demand |
 
-> Note: the IA (§7) and state hub (§9.2) list 5 calculators per state, including settlement and back pay, which are Phase 2 here. In the MVP, show those two as "coming soon" or hide them — decide before building the hub.
+### Gates between phases
 
-### Phase gates
-
-- **Phase 1 → 2:** AdSense approved.
-- **Phase 2 → 3:** Pro has paying users.
+- **Into Phase 2:** pages are indexed and starting to rank in Search Console, and visitors complete the tool.
+- **Into Phase 3:** enough waitlist sign-ups to justify building Pro. Set the number before launch so the decision isn't made on gut feel.
 
 ---
 
@@ -106,14 +119,14 @@ Legal advice, filing claims on the user's behalf, a mobile app, live chat, count
 
 **General rule:** every calculator reads its rates from the jurisdiction's data file. No number is hard-coded. Every figure is filled from the official state agency or gov.uk, with source URL and effective date recorded.
 
-### CALC-01 Average weekly wage (US) — P1
+### CALC-01 Average weekly wage (US) — P2
 
 - **Inputs:** pay type (hourly, salary, weekly, varied), pay amount, hours per week, overtime, second job (yes/no + pay), weeks worked in the lookback period.
 - **Rule:** lookback period and what counts (overtime, tips, concurrent jobs) come from the state file.
 - **Formula:** `AWW = gross earnings in lookback period / weeks in lookback period`
 - **Output:** AWW, with each included item listed.
 
-### CALC-02 Weekly benefit — temporary total disability (US) — P1
+### CALC-02 Weekly benefit — temporary total disability (US) — P2
 
 - **Inputs:** AWW (typed or carried over from CALC-01), injury date.
 - **Rule:** pick the rate table effective on the injury date; apply the state's percentage and weekly min/max.
@@ -129,32 +142,32 @@ Legal advice, filing claims on the user's behalf, a mobile app, live chat, count
 - **Rule:** waiting days are unpaid unless time off exceeds the state's retroactive threshold.
 - **Output:** days payable, amount owed, amount received, difference.
 
-### CALC-04 Medical mileage reimbursement (US) — P1
+### CALC-04 Medical mileage reimbursement (US) — P1 candidate (the leading "one narrow tool", pending Phase 0)
 
 - **Inputs:** list of trips (date, from, to, miles or address pair, round trip yes/no), parking and tolls.
 - **Rule:** miles × state rate effective on each trip date, plus allowed costs.
 - **Output:** total claim, per-trip table, printable log ready to send to the adjuster.
 
-### CALC-05 Settlement estimator (US) — P2
+### CALC-05 Settlement estimator (US) — P3, only with expert review
 
 - **Inputs:** state, impairment rating (%), body part, age, occupation group, AWW, future medical (yes/no).
 - **Rule:** each state has its own permanent-disability formula module (schedule weeks, rating tables, age/occupation adjustments), referenced by `settlement_module` in the state file.
 - **Output:** low–high range, **never a single number**, plus what pushes the value up or down. Always labelled "estimate only".
 
-### CALC-06 Injury compensation estimator (UK) — P1
+### CALC-06 Injury compensation estimator (UK) — postponed to P3, after the guideline-figure question is settled
 
 - **Inputs:** injury type and severity (guided picker), recovery time, lost earnings, out-of-pocket costs, care from family.
 - **Rule:** general damages from bracket ranges in the Judicial College guidelines, plus special damages (losses and costs).
 - **Output:** range for general damages, total for special damages, combined range.
 - **Open question:** bracket figures come from a published book — confirm how they can be summarised and cited (see Risks).
 
-### CALC-07 Statutory Sick Pay (UK) — P2
+### CALC-07 Statutory Sick Pay (UK) — P3
 
 - **Inputs:** average weekly earnings, qualifying days per week, first sick day, last sick day.
 - **Rule:** current SSP rate, eligibility rules and waiting days from gov.uk. **SSP rules changed in 2026 — confirm the current version before building.**
 - **Output:** SSP payable per week and in total.
 
-### CALC-08 Industrial Injuries Disablement Benefit (UK) — P2
+### CALC-08 Industrial Injuries Disablement Benefit (UK) — P3
 
 - **Inputs:** assessed disablement %, age, injury date.
 - **Rule:** weekly rate band by disablement % from gov.uk.
@@ -180,7 +193,7 @@ Injury and money pages are "Your Money or Your Life" content for Google, so trus
 | NFR-03 | SEO | Unique title, meta description and canonical URL per page; XML sitemap; breadcrumbs with schema |
 | NFR-04 | SEO | Structured data: `WebApplication` on calculators; `Article` and `FAQPage` on guides |
 | NFR-05 | Trust | Every rule shows source link and effective date; every guide shows author, reviewer (when added) and "last updated" |
-| NFR-06 | Trust | About page with the founder's real claims experience; contact page; editorial policy |
+| NFR-06 | Trust | About page describing the founder's real experience exactly as it is (software for transportation dispatch and case management in workers' comp — not claims-adjuster or legal experience); contact page; editorial policy |
 | NFR-07 | Accuracy | Rate data reviewed every January and whenever a state announces a change; change log published |
 | NFR-08 | Privacy | No calculator input leaves the browser on free pages; Pro data encrypted at rest; one-click delete-my-account |
 | NFR-09 | Privacy | GDPR (UK) and CCPA (California): consent banner, privacy policy, data request form |
@@ -290,7 +303,7 @@ Listed top to bottom as on mobile; desktop notes follow.
 2. Hero: "Know what your injury claim is worth." Sub-line: "Free, state-specific calculators. No sign-up." One select: "Where were you injured?" + button.
 3. Popular calculators: 4 cards (weekly benefit, settlement, mileage, UK compensation).
 4. "How it works": 3 steps (pick your state, enter your numbers, see how it's calculated).
-5. Trust strip: sources used, updated date, founder's claims background.
+5. Trust strip: sources used, updated date, founder's background (described exactly as in §1).
 6. Latest guides: 3 cards.
 7. Footer: links, legal notice, newsletter sign-up.
 
@@ -447,15 +460,19 @@ One page targets one search intent. Check real volumes in Keyword Planner or Ahr
 
 **Writing standard:** answer the question in the first two sentences, then explain; one worked example with numbers; sources at the end; review date on the page.
 
+**Off-page:** answer questions on Reddit and Quora with links only where they truly help; offer calculators as free embeds to small blogs (each embed links back).
+
 ---
 
 ## 12. Roadmap and KPIs
 
-| Phase | Timing | Deliverables |
-|---|---|---|
-| 1 — MVP launch | Weeks 1–6 | 3 states + UK estimator, 10 guides, methodology, apply for AdSense |
-| 2 — Pro tier | Weeks 7–14 | 7 more states, accounts, report, tracker, Paddle checkout |
-| 3 — Scale | Months 4–9 | All states by traffic, higher-paying ad network, referrals after legal review |
+Spend a week validating, test one narrow tool for a month, and add Pro and UK tools only after real traffic and a waitlist show demand.
+
+| Phase | Timing | Deliverables | Gate to the next phase |
+|---|---|---|---|
+| 0 + 1 — Validate + test | Weeks 1–4 | Keyword data and top-10 audit; one narrow tool; 3–5 guides; no backend or payments | Pages rank, the tool is used |
+| 2 — Expand | Months 2–4 | More states and calculators; AdSense; email sign-up; Pro waitlist button | Waitlist shows demand |
+| 3 — Pro + UK | Month 5 onward | Accounts, report, tracker; UK tools after legal check; admin panel | — |
 
 | KPI | How measured | Target by month 6 |
 |---|---|---|
@@ -480,26 +497,29 @@ Targets are starting guesses; reset after 3 months of data.
 | Payment provider won't pay out to Pakistan | Pro can't launch | Confirm with Paddle and Lemon Squeezy before Phase 2; keep the other as backup |
 | Unauthorised practice of law claims | Legal risk | Never advise on a specific case; estimates and education only; lawyer review of terms |
 | Copyright on UK guideline figures | Takedown risk | Summarise brackets in own words, cite source, get advice before launch |
-| Big sites copy the calculators | Slower growth | Win on depth, coverage, tracker and update speed |
+| Big sites copy the calculators | Slower growth | Win on depth, state coverage, the tracker and update speed |
+
+**Biggest risk overall:** there is no real demand or gap. Phase 0 and the gates exist to find that out in weeks, not months.
 
 ---
 
 ## 14. Open questions
 
 1. **Framework:** Astro (spec) or Next.js (current repo)?
-2. **MVP state hub:** show Phase 2 calculators (settlement, back pay) as "coming soon", or hide them?
-3. **Home "popular calculators":** the settlement card points to a Phase 2 calculator — swap for AWW in the MVP?
-4. **UK guideline brackets:** how can Judicial College figures be summarised and cited?
-5. **SSP 2026 changes:** confirm current rules before building CALC-07.
-6. **Payments:** confirm Paddle / Lemon Squeezy payout support for Pakistan.
-7. **Trademark/domain:** check USPTO and UK IPO; register `.com` and `.co.uk`.
+2. **The one narrow tool:** which calculator does Phase 0 confirm? Mileage log is the leading candidate.
+3. **Waitlist number:** how many sign-ups justify building Pro? Set it before launch.
+4. **Home "popular calculators":** the settlement card points to a Phase 3 calculator — swap it for the chosen Phase 1 tool?
+5. **UK guideline brackets:** how can Judicial College figures be summarised and cited?
+6. **SSP 2026 changes:** confirm current rules before building CALC-07.
+7. **Payments:** confirm Paddle / Lemon Squeezy payout support for Pakistan.
+8. **Trademark/domain:** check USPTO and UK IPO; register `.com` and `.co.uk`.
 
 ---
 
 ## 15. First tasks
 
-- [ ] Check domain and trademark for the name
-- [ ] Collect California, Texas and Florida rule data with sources
-- [ ] Set up the repo, design tokens and the calculator component
-- [ ] Build and test the weekly benefit calculator for California
-- [ ] Write the first 3 guides
+- [ ] Check "WorkClaimGuide" in USPTO and UK IPO trademark search, then register the domain
+- [ ] Collect keyword data for California, Texas and Florida terms
+- [ ] Audit the top 10 results for 15–20 searches and record the gaps
+- [ ] Choose the one narrow tool and confirm it with 3–5 people who know the problem
+- [ ] Set the waitlist number that will justify building Pro
