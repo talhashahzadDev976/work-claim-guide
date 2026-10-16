@@ -1,0 +1,35 @@
+{
+  "jurisdiction": "UK",
+  "name": "United Kingdom",
+  "source": {
+    "name": "Judicial College Guidelines for the Assessment of General Damages",
+    "edition": null,
+    "url": null
+  },
+  "effective_from": null,
+  "reviewed_by": null,
+  "last_reviewed": null,
+  "care": {
+    "hourly_rate": null,
+    "family_discount": null,
+    "source_url": null
+  },
+  "severities": [
+    { "id": "minor", "label": "Minor", "description": "You recovered, or expect to, within a few months." },
+    { "id": "moderate", "label": "Moderate", "description": "Symptoms lasting a year or more, but you can do most things." },
+    { "id": "serious", "label": "Serious", "description": "Lasting effects that limit your work or daily life." },
+    { "id": "severe", "label": "Severe", "description": "Permanent, major effects on your work and daily life." }
+  ],
+  "injuries": [
+    { "id": "neck", "label": "Neck", "brackets": { "minor": null, "moderate": null, "serious": null, "severe": null } },
+    { "id": "back", "label": "Back", "brackets": { "minor": null, "moderate": null, "serious": null, "severe": null } },
+    { "id": "shoulder", "label": "Shoulder", "brackets": { "minor": null, "moderate": null, "serious": null, "severe": null } },
+    { "id": "arm", "label": "Arm or elbow", "brackets": { "minor": null, "moderate": null, "serious": null, "severe": null } },
+    { "id": "hand", "label": "Wrist or hand", "brackets": { "minor": null, "moderate": null, "serious": null, "severe": null } },
+    { "id": "leg", "label": "Leg or hip", "brackets": { "minor": null, "moderate": null, "serious": null, "severe": null } },
+    { "id": "knee", "label": "Knee", "brackets": { "minor": null, "moderate": null, "serious": null, "severe": null } },
+    { "id": "foot", "label": "Ankle or foot", "brackets": { "minor": null, "moderate": null, "serious": null, "severe": null } },
+    { "id": "head", "label": "Head or brain", "brackets": { "minor": null, "moderate": null, "serious": null, "severe": null } },
+    { "id": "psychiatric", "label": "Psychiatric (e.g. PTSD, anxiety)", "brackets": { "minor": null, "moderate": null, "serious": null, "severe": null } }
+  ]
+}
